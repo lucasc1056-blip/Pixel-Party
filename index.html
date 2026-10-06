@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Pit Stop — Pick-up & Play</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Pixel Pit Stop home"><span class="brand-mark">✦</span> PIXEL PIT STOP</a>
+    <nav aria-label="Primary navigation"><a href="#home">Home</a><a href="#games">All games</a></nav>
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">♪ Sound off</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">NO ACCOUNTS. NO WAITING.</p>
+        <h1>Pick a game.<br><em>Press play.</em></h1>
+        <p class="hero-text">Classic games, ready when you are. Short breaks, long streaks, zero fuss.</p>
+        <a class="primary-btn" href="#games">Browse games <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="arc arc-one"></div><div class="arc arc-two"></div><div class="pixel-word">PLAY</div><div class="doodle">✹</div></div>
+    </section>
+
+    <section class="game-section" id="games">
+      <div class="section-heading"><div><p class="eyebrow">THE LINEUP</p><h2>Choose your<br><em>kind of fun.</em></h2></div><p class="section-note">Three all-time favorites.<br>One click to start.</p></div>
+      <div class="game-grid">
+        <button class="game-card card-tetric" data-game="tetric"><span class="card-number">01</span><span class="card-icon blocks">▟<i>▗</i></span><span class="card-title">Tetric!</span><span class="card-desc">Stack it. Clear it.<br>Beat your best.</span><span class="play-link">PLAY NOW <b>→</b></span></button>
+        <button class="game-card card-snake" data-game="snake"><span class="card-number">02</span><span class="card-icon snake-icon">⌁</span><span class="card-title">Snake.</span><span class="card-desc">One bite at a time.<br>Don't hit the wall.</span><span class="play-link">PLAY NOW <b>→</b></span></button>
+        <button class="game-card card-2048" data-game="2048"><span class="card-number">03</span><span class="card-icon tile-2048">2048</span><span class="card-title">2048.</span><span class="card-desc">Slide, merge, repeat.<br>Can you reach 2048?</span><span class="play-link">PLAY NOW <b>→</b></span></button>
+      </div>
+    </section>
+
+    <section class="game-view hidden" id="gameView"><button class="back-btn" id="backBtn">← Back to games</button><div id="gameMount"></div></section>
+  </main>
+  <footer><span>PIXEL PIT STOP © 2025</span><span>MADE FOR QUICK BREAKS & BIG SCORES</span></footer>
+  <style>.game-card{border-radius:14px}.game-over{position:absolute;inset:0;display:grid;place-items:center;background:rgba(20,33,29,.88);color:#c8f169;font:900 28px Arial;letter-spacing:.08em}.board{position:relative}</style>
+  <script src="app.js"></script>
+</body>
+</html>
