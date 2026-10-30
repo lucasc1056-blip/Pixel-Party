@@ -9,7 +9,7 @@
 <body>
   <header class="topbar">
     <a class="brand" href="#home" aria-label="Pixel Pit Stop home"><span class="brand-mark">✦</span> PIXEL PIT STOP</a>
-    <nav aria-label="Primary navigation"><a href="#home">Home</a><a href="#games">All games</a></nav>
+    <nav aria-label="Primary navigation"><a href="#home">Home</a><a href="#games">All games</a><a href="#shop">Shop</a></nav>
     <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">♪ Sound off</button>
   </header>
 
@@ -33,10 +33,16 @@
       </div>
     </section>
 
+    <section class="shop-section" id="shop"><div class="section-heading"><div><p class="eyebrow">ONE STOP SHOP</p><h2>Power up<br><em>every game.</em></h2></div><p class="section-note">Spend tokens once,<br>use upgrades whenever.</p></div><div class="shop-grid" id="shopGrid"></div></section>
     <section class="game-view hidden" id="gameView"><button class="back-btn" id="backBtn">← Back to games</button><div id="gameMount"></div></section>
   </main>
   <footer><span>PIXEL PIT STOP © 2025</span><span>MADE FOR QUICK BREAKS & BIG SCORES</span></footer>
   <style>.game-card{border-radius:14px}.game-over{position:absolute;inset:0;display:grid;place-items:center;background:rgba(20,33,29,.88);color:#c8f169;font:900 28px Arial;letter-spacing:.08em}.board{position:relative}</style>
-  <script src="app.js"></script>
+  <script src="app.js"></script><script>
+  const shopCatalog=[['tetric','TETRIC!','Wide Load','Unlock a larger 12-column board'],['snake','SNAKE.','Extra Life','Get one second chance after a crash'],['2048','2048.','Lucky Eights','New tiles spawn as 8s instead of 2s or 4s']];
+  let shopOwned=JSON.parse(localStorage.getItem('pixelPitStopShop')||'{}');if(localStorage.getItem('pixelPitStopShopSnake')==='true')shopOwned.snake=true;
+  function drawShop(){shopGrid.innerHTML=shopCatalog.map(([g,k,t,d])=>`<article class="shop-card"><span class="shop-game">${k}</span><h3>${t}</h3><p>${d}.</p><div class="shop-action"><span class="shop-price">${shopOwned[g]?'OWNED':'25 TOKENS'}</span><button class="shop-buy" data-shop="${g}" ${shopOwned[g]?'disabled':''}>${shopOwned[g]?'OWNED':'BUY · 25'}</button></div></article>`).join('');shopGrid.querySelectorAll('[data-shop]').forEach(b=>b.onclick=()=>{if(tokens<25)return;tokens-=25;shopOwned[b.dataset.shop]=true;localStorage.setItem('pixelPitStopShop',JSON.stringify(shopOwned));if(b.dataset.shop==='snake')localStorage.setItem('pixelPitStopShopSnake','true');localStorage.setItem('pixelPitStopTokens',tokens);drawShop()})};
+  window.addEventListener('shopChanged',()=>{shopOwned=JSON.parse(localStorage.getItem('pixelPitStopShop')||'{}');if(localStorage.getItem('pixelPitStopShopSnake')==='true')shopOwned.snake=true;drawShop()});drawShop();
+  </script>
 </body>
 </html>
